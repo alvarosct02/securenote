@@ -5,12 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.asct94.securenote.Note
+import androidx.fragment.app.viewModels
 import com.asct94.securenote.databinding.FragmentNoteListBinding
+import com.asct94.securenote.domain.models.Note
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NoteListFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteListBinding
+    private val viewModel by viewModels<NoteListViewModel>()
+    private val adapter = NotesAdapter(emptyList())
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,22 +29,31 @@ class NoteListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rvNotes.adapter = adapter
 
-        binding.rvNotes.adapter = NotesAdapter(
-            listOf(
-                Note(
-                    "Title 1",
-                    "Vestibulum sit amet sapien a justo placerat volutpat at ac dolor. Duis dignissim ut leo ut volutpat. Proin nec ultricies ipsum, ac cursus metus. Aliquam vitae ornare elit. In hendrerit dui in facilisis volutpat."
-                ),
-                Note(
-                    "Title 2",
-                    "Sed iaculis, dui sit amet tempor placerat, urna turpis pulvinar ex, vel varius ipsum leo vel velit. Maecenas sem turpis, pellentesque a commodo ut, mattis sagittis mauris. "
-                ),
-                Note(
-                    "Title 3",
-                    "Sed pharetra erat vitae nisi laoreet suscipit. Donec eu nibh a orci sagittis vehicula. Quisque ultricies neque eu sem iaculis feugiat. Proin dictum aliquam dolor. In nec metus aliquet, mattis elit sed, semper mi."
-                )
-            )
-        )
+        viewModel.uiState.observe(viewLifecycleOwner) {
+            when (it) {
+                NoteListUiState.Empty -> onEmpty()
+                NoteListUiState.Init -> onInit()
+                NoteListUiState.Loading -> onLoading()
+                is NoteListUiState.Success -> onSuccess(it.content)
+            }
+        }
+    }
+
+    private fun onSuccess(content: List<Note>) {
+        adapter.updateList(content)
+    }
+
+    private fun onLoading() {
+//        Show Loaders
+    }
+
+    private fun onInit() {
+//        Show Shimmers
+    }
+
+    private fun onEmpty() {
+//        Show EmptyScreen
     }
 }

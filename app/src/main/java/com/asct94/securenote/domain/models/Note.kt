@@ -1,4 +1,4 @@
-package com.asct94.securenote
+package com.asct94.securenote.domain.models
 
 data class Note(
     val title: String,
