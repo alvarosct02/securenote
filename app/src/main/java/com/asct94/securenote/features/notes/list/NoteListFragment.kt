@@ -4,19 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.asct94.securenote.databinding.FragmentNoteListBinding
 import com.asct94.securenote.domain.models.Note
+import com.asct94.securenote.features.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NoteListFragment : Fragment() {
+class NoteListFragment : BaseFragment<FragmentNoteListBinding>() {
 
     private lateinit var binding: FragmentNoteListBinding
     private val viewModel by viewModels<NoteListViewModel>()
-    private val adapter = NotesAdapter(emptyList())
 
+    private lateinit var adapter: NotesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,10 +28,16 @@ class NoteListFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setupViews() {
+        adapter = NotesAdapter(emptyList()) {
+            val action =
+                NoteListFragmentDirections.actionNoteListFragmentToNoteDetailFragment(it.id)
+            findNavController().navigate(action)
+        }
         binding.rvNotes.adapter = adapter
+    }
 
+    override fun setupObservers() {
         viewModel.uiState.observe(viewLifecycleOwner) {
             when (it) {
                 NoteListUiState.Empty -> onEmpty()

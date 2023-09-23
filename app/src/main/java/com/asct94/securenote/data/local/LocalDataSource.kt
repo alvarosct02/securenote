@@ -33,4 +33,8 @@ class LocalDataSource @Inject constructor(
         seedDbIfEmpty()
         noteDao.getAll()
     }
+
+    suspend fun getNote(id: Int): NoteEntity = withContext(Dispatchers.IO) {
+        noteDao.findById(id)
+    }
 }

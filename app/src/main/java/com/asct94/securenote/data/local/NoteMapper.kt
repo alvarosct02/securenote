@@ -8,6 +8,7 @@ class NoteEntityMapper @Inject constructor() {
 
     fun fromDomain(note: Note): NoteEntity = note.let {
         NoteEntity(
+            id = it.id,
             title = it.title,
             message = it.message,
         )
@@ -15,6 +16,7 @@ class NoteEntityMapper @Inject constructor() {
 
     fun toDomain(noteEntity: NoteEntity): Note = noteEntity.let {
         Note(
+            id = it.id,
             title = it.title,
             message = it.message,
         )

@@ -11,7 +11,8 @@ import com.asct94.securenote.domain.models.Note
 
 
 class NotesAdapter(
-    private var notes: List<Note>
+    private var notes: List<Note>,
+    private val onItemClick: (Note)-> Unit
 ) : ListAdapter<Note, NotesAdapter.ViewHolder>(DiffUtilItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,6 +25,9 @@ class NotesAdapter(
         val note = notes.getOrNull(position) ?: return
         holder.binding.tvTitle.text = note.title
         holder.binding.tvMessage.text = note.message
+        holder.binding.root.setOnClickListener {
+            onItemClick(note)
+        }
     }
 
     override fun getItemCount() = notes.size

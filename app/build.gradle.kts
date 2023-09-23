@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -54,6 +55,10 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.0-rc01")
     implementation("androidx.room:room-ktx:2.6.0-rc01")
     kapt("androidx.room:room-compiler:2.6.0-rc01")
+
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
