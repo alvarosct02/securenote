@@ -1,5 +1,6 @@
 package com.asct94.securenote.data.local
 
+import com.asct94.securenote.data.local.room.models.NoteEntity
 import com.asct94.securenote.domain.models.Note
 import javax.inject.Inject
 
