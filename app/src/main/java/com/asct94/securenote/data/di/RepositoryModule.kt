@@ -1,9 +1,11 @@
 package com.asct94.securenote.data.di
 
 import com.asct94.securenote.data.DefaultAuthRepository
+import com.asct94.securenote.data.DefaultBiometricsRepository
 import com.asct94.securenote.data.DefaultNotesRepository
 import com.asct94.securenote.data.DefaultSettingsRepository
 import com.asct94.securenote.domain.repositories.AuthRepository
+import com.asct94.securenote.domain.repositories.BiometricsRepository
 import com.asct94.securenote.domain.repositories.NotesRepository
 import com.asct94.securenote.domain.repositories.SettingsRepository
 import dagger.Binds
@@ -23,4 +25,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindSettingsRepository(defaultSettingsRepository: DefaultSettingsRepository): SettingsRepository
+
+    @Binds
+    abstract fun bindBiometricsRepository(defaultBiometricsRepository: DefaultBiometricsRepository): BiometricsRepository
 }

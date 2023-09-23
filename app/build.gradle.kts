@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.asct94.securenote"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -56,6 +56,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.0-rc01")
     kapt("androidx.room:room-compiler:2.6.0-rc01")
 
+//    Biometric
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.3")

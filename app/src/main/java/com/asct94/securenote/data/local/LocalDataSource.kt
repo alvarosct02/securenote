@@ -8,7 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class LocalDataSource @Inject constructor(
-    private val noteDao: NoteDao
+    private val noteDao: NoteDao,
 ) {
 
     private suspend fun seedDbIfEmpty() {
@@ -36,5 +36,9 @@ class LocalDataSource @Inject constructor(
 
     suspend fun getNote(id: Int): NoteEntity = withContext(Dispatchers.IO) {
         noteDao.findById(id)
+    }
+
+    fun isBiometricAppEnable(): Boolean {
+        return true
     }
 }

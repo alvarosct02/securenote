@@ -1,6 +1,7 @@
 package com.asct94.securenote.features.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -12,10 +13,11 @@ import kotlinx.coroutines.launch
 
 abstract class BaseFragment : Fragment() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupViews()
         setupObservers()
+        setupViews()
+        onSetupCompleted()
     }
 
     fun <T> Flow<T>.collectWhenStarted(collector: FlowCollector<T>) =
@@ -28,12 +30,14 @@ abstract class BaseFragment : Fragment() {
         val flow = this
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(state) {
+                Log.e("ASCT", "flow.collect")
                 flow.collect(collector)
             }
         }
     }
 
-    abstract fun setupViews()
-    abstract fun setupObservers()
+    open fun setupViews() = Unit
+    open fun setupObservers() = Unit
+    open fun onSetupCompleted() = Unit
 
 }

@@ -2,16 +2,19 @@ package com.asct94.securenote.features.login
 
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.repositories.AuthRepository
+import com.asct94.securenote.domain.repositories.BiometricsRepository
 import com.asct94.securenote.domain.repositories.SettingsRepository
 import com.asct94.securenote.features.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository,
+    private val biometricsRepository: BiometricsRepository,
     private val authRepository: AuthRepository,
 ) : BaseViewModel<LoginUiState, LoginEvent>(LoginUiState()) {
 
@@ -37,10 +40,12 @@ class LoginViewModel @Inject constructor(
         _uiState.update { it.copy(isLoading = false) }
     }
 
-    fun showBiometricPromptIfAble() = viewModelScope.launch {
-        val shouldShow = settingsRepository.isBiometricCheckEnable()
+    private fun showBiometricPromptIfAble() = viewModelScope.launch {
+        delay(200)
+        val shouldShow =
+            settingsRepository.isBiometricAppEnable() && biometricsRepository.isBiometricFeatureDeviceEnable()
         if (shouldShow) {
-
+            _event.emit(LoginEvent.ShowBiometricPrompt)
         }
     }
 }

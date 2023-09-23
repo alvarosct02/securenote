@@ -27,8 +27,8 @@ class NoteDetailFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onSetupCompleted() {
+        super.onSetupCompleted()
         viewModel.fetchNote(args.noteId)
     }
 

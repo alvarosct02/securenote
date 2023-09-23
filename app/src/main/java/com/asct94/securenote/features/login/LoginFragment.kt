@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.asct94.securenote.databinding.FragmentLoginBinding
-import com.asct94.securenote.features.base.BaseFragment
+import com.asct94.securenote.features.base.BiometricFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.debounce
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment() {
+class LoginFragment : BiometricFragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
@@ -41,16 +42,31 @@ class LoginFragment : BaseFragment() {
             binding.etPassword.setTextKeepState(it.password)
         }
 
-        viewModel.event.collectWhenStarted {
+        viewModel.event.collectWhenStarted { it ->
             when (it) {
                 LoginEvent.NavigateToApp -> {
-                    val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment()
-                    findNavController().navigate(action)
+                    navigateToApp()
                 }
 
-                is LoginEvent.ShowError -> TODO()
+                LoginEvent.ShowBiometricPrompt -> {
+                    showBiometricDialog(
+                        onSuccess = ::navigateToApp,
+                        onFailure = ::showError
+                    )
+                }
+
+                is LoginEvent.ShowError -> showError(it.message)
             }
         }
+    }
+
+    private fun navigateToApp() {
+        val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
 
