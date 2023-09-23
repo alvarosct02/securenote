@@ -1,11 +1,9 @@
 package com.asct94.securenote.features.notes.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.models.Note
 import com.asct94.securenote.domain.repositories.NotesRepository
+import com.asct94.securenote.features.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -13,10 +11,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
     private val notesRepository: NotesRepository
-) : ViewModel() {
-
-    private val _uiState = MutableLiveData<NoteListUiState>(NoteListUiState.Init)
-    val uiState: LiveData<NoteListUiState> = _uiState
+) : BaseViewModel<NoteListUiState, Unit>(NoteListUiState.Init) {
 
     init {
         fetchNotes()

@@ -12,7 +12,7 @@ import com.asct94.securenote.features.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NoteListFragment : BaseFragment<FragmentNoteListBinding>() {
+class NoteListFragment : BaseFragment() {
 
     private lateinit var binding: FragmentNoteListBinding
     private val viewModel by viewModels<NoteListViewModel>()
@@ -38,7 +38,7 @@ class NoteListFragment : BaseFragment<FragmentNoteListBinding>() {
     }
 
     override fun setupObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) {
+        viewModel.uiState.collectWhenStarted {
             when (it) {
                 NoteListUiState.Empty -> onEmpty()
                 NoteListUiState.Init -> onInit()

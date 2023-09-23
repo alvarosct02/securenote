@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.asct94.securenote.databinding.FragmentNoteDetailBinding
-import com.asct94.securenote.databinding.FragmentNoteListBinding
 import com.asct94.securenote.domain.models.Note
 import com.asct94.securenote.features.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NoteDetailFragment : BaseFragment<FragmentNoteListBinding>() {
+class NoteDetailFragment : BaseFragment() {
 
     private lateinit var binding: FragmentNoteDetailBinding
     private val viewModel by viewModels<NoteDetailViewModel>()
@@ -35,8 +34,8 @@ class NoteDetailFragment : BaseFragment<FragmentNoteListBinding>() {
 
     override fun setupViews() = Unit
 
-    override fun setupObservers() {
-        viewModel.uiState.observe(viewLifecycleOwner) {
+    override fun setupObservers()  {
+        viewModel.uiState.collectWhenStarted {
             when (it) {
                 NoteDetailUiState.Init -> onInit()
                 NoteDetailUiState.Loading -> onLoading()
@@ -56,9 +55,5 @@ class NoteDetailFragment : BaseFragment<FragmentNoteListBinding>() {
 
     private fun onInit() {
 //        Show Shimmers
-    }
-
-    private fun onEmpty() {
-//        Show EmptyScreen
     }
 }
