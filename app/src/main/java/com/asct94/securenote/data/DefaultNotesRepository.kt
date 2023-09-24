@@ -25,4 +25,8 @@ class DefaultNotesRepository @Inject constructor(
         val noteEntity = entityMapper.fromDomain(note)
         localDataSource.saveNote(noteEntity)
     }
+
+    override suspend fun deleteNote(noteId: Int) {
+        localDataSource.deleteNote(noteId)
+    }
 }

@@ -41,6 +41,11 @@ class LocalDataSource @Inject constructor(
         noteDao.insert(noteEntity)
     }
 
+    suspend fun deleteNote(noteId: Int) = withContext(Dispatchers.IO) {
+        val note = noteDao.findById(noteId)
+        noteDao.delete(note)
+    }
+
     fun isBiometricAppEnable(): Boolean {
         return true
     }

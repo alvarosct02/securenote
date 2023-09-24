@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.asct94.securenote.R
 import com.asct94.securenote.databinding.FragmentNoteDetailBinding
 import com.asct94.securenote.domain.models.Note
 import com.asct94.securenote.features.base.BaseFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +41,9 @@ class NoteDetailFragment : BaseFragment() {
                 NoteDetailFragmentDirections.actionNoteDetailFragmentToNoteEditFragment(args.noteId)
             findNavController().navigate(action)
         }
+        binding.btDelete.setOnClickListener {
+            openDeleteConfirmationDialog()
+        }
     }
 
     override fun setupObservers() {
@@ -49,6 +54,28 @@ class NoteDetailFragment : BaseFragment() {
                 is NoteDetailUiState.Success -> onSuccess(it.content)
             }
         }
+        viewModel.event.collectWhenStarted {
+            when (it) {
+                NoteDetailEvent.OnNoteDeleted -> {
+                    findNavController().popBackStack()
+                }
+
+                else -> Unit
+            }
+        }
+    }
+
+    private fun openDeleteConfirmationDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.note_delete_dialog_title))
+            .setMessage(resources.getString(R.string.note_delete_dialog_message))
+            .setPositiveButton(resources.getString(R.string.delete)) { dialog, which ->
+                viewModel.deleteNote(args.noteId)
+            }
+            .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun onSuccess(note: Note) {
