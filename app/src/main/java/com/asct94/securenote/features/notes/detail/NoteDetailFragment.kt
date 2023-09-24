@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.asct94.securenote.databinding.FragmentNoteDetailBinding
 import com.asct94.securenote.domain.models.Note
@@ -32,9 +33,15 @@ class NoteDetailFragment : BaseFragment() {
         viewModel.fetchNote(args.noteId)
     }
 
-    override fun setupViews() = Unit
+    override fun setupViews() {
+        binding.btEdit.setOnClickListener {
+            val action =
+                NoteDetailFragmentDirections.actionNoteDetailFragmentToNoteEditFragment(args.noteId)
+            findNavController().navigate(action)
+        }
+    }
 
-    override fun setupObservers()  {
+    override fun setupObservers() {
         viewModel.uiState.collectWhenStarted {
             when (it) {
                 NoteDetailUiState.Init -> onInit()

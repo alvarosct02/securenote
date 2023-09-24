@@ -20,4 +20,9 @@ class DefaultNotesRepository @Inject constructor(
         val note = localDataSource.getNote(id)
         return entityMapper.toDomain(note)
     }
+
+    override suspend fun saveNote(note: Note) {
+        val noteEntity = entityMapper.fromDomain(note)
+        localDataSource.saveNote(noteEntity)
+    }
 }

@@ -32,6 +32,19 @@
         <argument
             android:name="noteId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_noteDetailFragment_to_noteEditFragment"
+            app:destination="@id/noteEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteEditFragment"
+        android:name="com.asct94.securenote.features.notes.edit.NoteEditFragment"
+        android:label="NoteEditFragment"
+        tools:layout="@layout/fragment_note_edit">
+
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

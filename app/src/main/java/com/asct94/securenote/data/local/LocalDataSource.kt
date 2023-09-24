@@ -29,13 +29,16 @@ class LocalDataSource @Inject constructor(
     }
 
     suspend fun getNotes(): List<NoteEntity> = withContext(Dispatchers.IO) {
-        delay(1000)
         seedDbIfEmpty()
         noteDao.getAll()
     }
 
     suspend fun getNote(id: Int): NoteEntity = withContext(Dispatchers.IO) {
         noteDao.findById(id)
+    }
+
+    suspend fun saveNote(noteEntity: NoteEntity) {
+        noteDao.insert(noteEntity)
     }
 
     fun isBiometricAppEnable(): Boolean {

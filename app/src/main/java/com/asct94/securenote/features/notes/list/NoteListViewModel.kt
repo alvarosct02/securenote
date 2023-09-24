@@ -13,11 +13,7 @@ class NoteListViewModel @Inject constructor(
     private val notesRepository: NotesRepository
 ) : BaseViewModel<NoteListUiState, Unit>(NoteListUiState.Init) {
 
-    init {
-        fetchNotes()
-    }
-
-    private fun fetchNotes() = viewModelScope.launch {
+    fun fetchNotes() = viewModelScope.launch {
         _uiState.value = NoteListUiState.Loading
         val notes = notesRepository.getNotes()
         _uiState.value = NoteListUiState.Success(notes)

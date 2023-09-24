@@ -28,6 +28,11 @@ class NoteListFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onSetupCompleted() {
+        super.onSetupCompleted()
+        viewModel.fetchNotes()
+    }
+
     override fun setupViews() {
         adapter = NotesAdapter(emptyList()) {
             val action =
