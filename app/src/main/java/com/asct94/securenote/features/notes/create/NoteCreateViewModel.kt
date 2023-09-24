@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.notes.edit
+package com.asct94.securenote.features.notes.create
 
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.models.Note
@@ -10,15 +10,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class NoteEditViewModel @Inject constructor(
+class NoteCreateViewModel @Inject constructor(
     private val notesRepository: NotesRepository,
-) : BaseViewModel<NoteEditUiState, NoteEditEvent>(NoteEditUiState()) {
-
-    fun fetchNote(id: Int) = viewModelScope.launch {
-        _uiState.update { it.copy(isLoading = true) }
-        val note = notesRepository.getNote(id)
-        _uiState.update { it.copy(originalNote = note, isLoading = false) }
-    }
+) : BaseViewModel<NoteEditUiState, NoteCreateEvent>(NoteEditUiState()) {
 
     fun updateTitle(title: String) = viewModelScope.launch {
         _uiState.update { it.copy(titleEdit = title) }
@@ -30,11 +24,16 @@ class NoteEditViewModel @Inject constructor(
 
     fun saveNote() = viewModelScope.launch {
         val newNote = Note(
-            id = _uiState.value.id,
-            title = _uiState.value.title,
-            message = _uiState.value.message,
+            title = _uiState.value.titleEdit,
+            message = _uiState.value.messageEdit,
         )
         notesRepository.saveNote(newNote)
-        _event.emit(NoteEditEvent.OnSaveSuccess)
+        _event.emit(NoteCreateEvent.OnSaveSuccess)
     }
 }
+
+data class NoteEditUiState(
+    val messageEdit: String = "",
+    val titleEdit: String = "",
+    val isLoading: Boolean = false
+)

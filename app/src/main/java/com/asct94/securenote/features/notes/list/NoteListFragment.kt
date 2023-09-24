@@ -40,6 +40,10 @@ class NoteListFragment : BaseFragment() {
             findNavController().navigate(action)
         }
         binding.rvNotes.adapter = adapter
+        binding.btCreate.setOnClickListener {
+            val action = NoteListFragmentDirections.actionNoteListFragmentToNoteCreateFragment()
+            findNavController().navigate(action)
+        }
     }
 
     override fun setupObservers() {
