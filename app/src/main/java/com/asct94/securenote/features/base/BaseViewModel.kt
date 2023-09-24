@@ -17,3 +17,10 @@ abstract class BaseViewModel<T, E>(initialState: T) : ViewModel() {
     val event: SharedFlow<E> = _event.asSharedFlow()
 
 }
+
+abstract class BaseViewModel2<E>() : ViewModel() {
+
+    protected val _event = MutableSharedFlow<E>(replay = 0)
+    val event: SharedFlow<E> = _event.asSharedFlow()
+
+}

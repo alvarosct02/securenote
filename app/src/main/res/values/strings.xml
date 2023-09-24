@@ -15,5 +15,7 @@
 <!--    Note Delete Confirmation-->
     <string name="note_delete_dialog_title">Delete Note</string>
     <string name="note_delete_dialog_message">Do you really want to delete this note?</string>
+    <string name="confirm">Confirm</string>
+    <string name="login_info">To safeguard your privacy and access your confidential notes, please enter your password.\n\nThis ensures only you have access, providing peace of mind and a secure digital space for your notes.</string>
 
 </resources>

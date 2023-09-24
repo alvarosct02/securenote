@@ -1,12 +1,13 @@
 package com.asct94.securenote.data.local.room.models
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "NoteEntity")
 class NoteEntity(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "message") val message: String,
+    @PrimaryKey(autoGenerate = true) val id: Int? = null,
+    val title: String,
+    val message: String,
+    val color: Int,
+    val updatedAt: Long,
 )

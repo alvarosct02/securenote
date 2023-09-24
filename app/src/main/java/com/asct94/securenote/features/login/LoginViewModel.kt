@@ -4,11 +4,11 @@ import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.repositories.AuthRepository
 import com.asct94.securenote.domain.repositories.BiometricsRepository
 import com.asct94.securenote.domain.repositories.SettingsRepository
-import com.asct94.securenote.features.base.BaseViewModel
+import com.asct94.securenote.features.base.BaseViewModel2
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -16,28 +16,21 @@ class LoginViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository,
     private val biometricsRepository: BiometricsRepository,
     private val authRepository: AuthRepository,
-) : BaseViewModel<LoginUiState, LoginEvent>(LoginUiState()) {
+) : BaseViewModel2<LoginEvent>() {
+
+    val password = MutableStateFlow("")
 
     init {
         showBiometricPromptIfAble()
     }
 
-    fun updatePassword(password: String) = viewModelScope.launch {
-        _uiState.update {
-            it.copy(password = password)
-        }
-    }
-
     fun validatePassword() = viewModelScope.launch {
-        _uiState.update { it.copy(isLoading = true) }
-        val password = _uiState.value.password
-        val isValid = authRepository.validatePassword(password)
+        val isValid = authRepository.validatePassword(password.value)
         if (isValid) {
             _event.emit(LoginEvent.NavigateToApp)
         } else {
 //            SHOW ERROR
         }
-        _uiState.update { it.copy(isLoading = false) }
     }
 
     private fun showBiometricPromptIfAble() = viewModelScope.launch {

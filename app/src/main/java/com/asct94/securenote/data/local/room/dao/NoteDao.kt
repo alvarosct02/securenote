@@ -5,16 +5,19 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.asct94.securenote.data.local.room.models.NoteEntity
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 
 @Dao
 interface NoteDao {
 
     @Query("SELECT * FROM NoteEntity")
-    fun getAll(): List<NoteEntity>
+    fun getAll(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM NoteEntity WHERE id LIKE :id LIMIT 1")
-    fun findById(id: Int): NoteEntity
+    suspend fun getById(id: Int): NoteEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: NoteEntity)
@@ -24,4 +27,9 @@ interface NoteDao {
 
     @Delete
     suspend fun delete(user: NoteEntity)
+
+    @Transaction
+    suspend fun deleteById(noteId: Int) {
+        delete(getById(noteId))
+    }
 }

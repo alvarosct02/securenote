@@ -1,6 +1,5 @@
 package com.asct94.securenote.features.notes.list
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,8 +10,7 @@ import com.asct94.securenote.domain.models.Note
 
 
 class NotesAdapter(
-    private var notes: List<Note>,
-    private val onItemClick: (Note)-> Unit
+    private val onItemClick: (Note) -> Unit
 ) : ListAdapter<Note, NotesAdapter.ViewHolder>(DiffUtilItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,20 +20,12 @@ class NotesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val note = notes.getOrNull(position) ?: return
+        val note = getItem(position) ?: return
         holder.binding.tvTitle.text = note.title
         holder.binding.tvMessage.text = note.message
         holder.binding.root.setOnClickListener {
             onItemClick(note)
         }
-    }
-
-    override fun getItemCount() = notes.size
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateList(list: List<Note>) {
-        this.notes = list
-        notifyDataSetChanged()
     }
 
     class ViewHolder(

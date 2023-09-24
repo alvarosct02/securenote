@@ -18,37 +18,24 @@
         android:name="com.asct94.securenote.features.notes.list.NoteListFragment"
         tools:layout="@layout/fragment_note_list">
         <action
-            android:id="@+id/action_noteListFragment_to_noteDetailFragment"
-            app:destination="@id/noteDetailFragment" />
+            android:id="@+id/action_noteListFragment_to_noteAddFragment"
+            app:destination="@id/noteAddEditFragment">
+            <argument
+                android:name="noteId"
+                android:defaultValue="-1" />
+        </action>
         <action
-            android:id="@+id/action_noteListFragment_to_noteCreateFragment"
-            app:destination="@id/noteCreateFragment" />
+            android:id="@+id/action_noteListFragment_to_noteEditFragment"
+            app:destination="@id/noteAddEditFragment" />
     </fragment>
     <fragment
-        android:id="@+id/noteDetailFragment"
-        android:name="com.asct94.securenote.features.notes.detail.NoteDetailFragment"
-        tools:layout="@layout/fragment_note_detail">
+        android:id="@+id/noteAddEditFragment"
+        android:name="com.asct94.securenote.features.notes.add_edit.NoteAddEditFragment"
+        tools:layout="@layout/fragment_note_add_edit">
 
         <argument
             android:name="noteId"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_noteDetailFragment_to_noteEditFragment"
-            app:destination="@id/noteEditFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/noteEditFragment"
-        android:name="com.asct94.securenote.features.notes.edit.NoteEditFragment"
-        tools:layout="@layout/fragment_note_edit">
-
-        <argument
-            android:name="noteId"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/noteCreateFragment"
-        android:name="com.asct94.securenote.features.notes.create.NoteCreateFragment"
-        tools:layout="@layout/fragment_note_create">
     </fragment>
 
 </navigation>

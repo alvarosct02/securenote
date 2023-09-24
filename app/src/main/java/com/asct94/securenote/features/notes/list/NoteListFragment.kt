@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.asct94.securenote.databinding.FragmentNoteListBinding
-import com.asct94.securenote.domain.models.Note
 import com.asct94.securenote.features.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,48 +27,22 @@ class NoteListFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onSetupCompleted() {
-        super.onSetupCompleted()
-        viewModel.fetchNotes()
-    }
-
     override fun setupViews() {
-        adapter = NotesAdapter(emptyList()) {
+        adapter = NotesAdapter {
             val action =
-                NoteListFragmentDirections.actionNoteListFragmentToNoteDetailFragment(it.id)
+                NoteListFragmentDirections.actionNoteListFragmentToNoteEditFragment(it.id)
             findNavController().navigate(action)
         }
         binding.rvNotes.adapter = adapter
         binding.btCreate.setOnClickListener {
-            val action = NoteListFragmentDirections.actionNoteListFragmentToNoteCreateFragment()
+            val action = NoteListFragmentDirections.actionNoteListFragmentToNoteAddFragment()
             findNavController().navigate(action)
         }
     }
 
     override fun setupObservers() {
         viewModel.uiState.collectWhenStarted {
-            when (it) {
-                NoteListUiState.Empty -> onEmpty()
-                NoteListUiState.Init -> onInit()
-                NoteListUiState.Loading -> onLoading()
-                is NoteListUiState.Success -> onSuccess(it.content)
-            }
+            adapter.submitList(it.notes)
         }
-    }
-
-    private fun onSuccess(content: List<Note>) {
-        adapter.updateList(content)
-    }
-
-    private fun onLoading() {
-//        Show Loaders
-    }
-
-    private fun onInit() {
-//        Show Shimmers
-    }
-
-    private fun onEmpty() {
-//        Show EmptyScreen
     }
 }
