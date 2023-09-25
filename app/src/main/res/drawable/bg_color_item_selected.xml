@@ -4,11 +4,11 @@
     <corners android:radius="999dp" />
 
     <size
-        android:width="35dp"
-        android:height="35dp" />
+        android:width="@dimen/size_color_selector"
+        android:height="@dimen/size_color_selector" />
 
     <stroke
-        android:width="2dp"
+        android:width="@dimen/size_color_selector_stroke"
         android:color="@android:color/black" />
 
 </shape>

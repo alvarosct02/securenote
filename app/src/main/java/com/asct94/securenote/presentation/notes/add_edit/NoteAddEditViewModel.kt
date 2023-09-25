@@ -2,7 +2,9 @@ package com.asct94.securenote.presentation.notes.add_edit
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.asct94.securenote.R
 import com.asct94.securenote.domain.models.Note
+import com.asct94.securenote.domain.models.Note.Companion.NOTE_ID_NULL
 import com.asct94.securenote.domain.repositories.NotesRepository
 import com.asct94.securenote.presentation.base.BaseViewModel2
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +28,7 @@ class NoteAddEditViewModel @Inject constructor(
 
     init {
         val noteId = savedStateHandle.get<Int>("noteId")
-        noteId.takeIf { it != -1 }?.let {
+        noteId.takeIf { it != NOTE_ID_NULL }?.let {
             fetchNote(it)
         }
     }
@@ -40,15 +42,24 @@ class NoteAddEditViewModel @Inject constructor(
     }
 
     fun saveNote() = viewModelScope.launch {
+        if (title.value.trim().isEmpty() || message.value.trim().isEmpty()) {
+            _event.emit(NoteAddEditEvent.ShowError(R.string.note_save_error))
+            return@launch
+        }
         notesRepository.saveNote(
             Note(
-                id = currentNoteId ?: -1,
+                id = currentNoteId ?: NOTE_ID_NULL,
                 title = title.value,
                 message = message.value,
                 color = color.value,
                 updateAt = System.currentTimeMillis(),
             )
         )
-        _event.emit(NoteAddEditEvent.OnSaveSuccess)
+        _event.emit(NoteAddEditEvent.OnNoteSaved)
+    }
+
+    fun deleteNote() = viewModelScope.launch {
+        currentNoteId?.let { notesRepository.deleteNote(it) }
+        _event.emit(NoteAddEditEvent.OnNoteDeleted)
     }
 }

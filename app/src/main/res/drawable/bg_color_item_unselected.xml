@@ -4,7 +4,7 @@
     <corners android:radius="999dp" />
 
     <size
-        android:width="35dp"
-        android:height="35dp" />
+        android:width="@dimen/size_color_selector"
+        android:height="@dimen/size_color_selector" />
 
 </shape>

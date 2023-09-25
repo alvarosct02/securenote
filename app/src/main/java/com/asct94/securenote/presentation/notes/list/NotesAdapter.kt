@@ -21,8 +21,7 @@ class NotesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = getItem(position) ?: return
-        holder.binding.tvTitle.text = note.title
-        holder.binding.tvMessage.text = note.message
+        holder.binding.note = note
         holder.binding.root.setOnClickListener {
             onItemClick(note)
         }

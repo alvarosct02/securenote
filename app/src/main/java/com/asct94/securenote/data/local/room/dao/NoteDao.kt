@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.firstOrNull
 @Dao
 interface NoteDao {
 
-    @Query("SELECT * FROM NoteEntity")
+    @Query("SELECT * FROM NoteEntity ORDER BY updatedAt DESC")
     fun getAll(): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM NoteEntity WHERE id LIKE :id LIMIT 1")

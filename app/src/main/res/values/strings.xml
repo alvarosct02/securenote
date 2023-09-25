@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">SecureNote</string>
+    <string name="app_name">Secure Note</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_add_note">Add Note</string>
+    <string name="title_edit_note">Edit Note</string>
+
+    <string name="date_format">MM/dd/yyyy HH:mm:ss</string>
 
 <!--    General-->
     <string name="delete">Delete</string>
@@ -10,6 +15,7 @@
 <!--    Login-->
     <string name="password">Password</string>
     <string name="yes">Are you sure?</string>
+    <string name="note_save_error">Can\'t save an empty note</string>
 
 
 <!--    Note Delete Confirmation-->
@@ -21,5 +27,11 @@
     <string name="title_placeholder">Add title</string>
     <string name="message_label">Note</string>
     <string name="title_label">Title</string>
+    <string name="change_password">Change password</string>
+    <string name="enable_biometrics">Enable Biometrics</string>
+    <string name="button_add_note">Add Note</string>
+    <string name="other_features">Other Features</string>
+    <string name="account">Account</string>
+    <string name="load_from_json_file">Load from JSON file</string>
 
 </resources>

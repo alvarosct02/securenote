@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.asct94.securenote.presentation.settings.SettingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_settings"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/spacing"
+            android:paddingTop="@dimen/spacing_32"
+            android:paddingBottom="@dimen/spacing_half"
+            android:text="@string/account"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="@dimen/headline_7" />
+
+        <TextView
+            android:id="@+id/bt_change_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:paddingVertical="@dimen/spacing_32"
+            android:paddingStart="@dimen/spacing_32"
+            android:paddingEnd="@dimen/spacing"
+            android:text="@string/change_password"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:drawableEndCompat="@drawable/ic_chevron_right" />
+
+        <include layout="@layout/layout_divider" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sw_biometrics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@{viewModel.uiState.biometricsEnable}"
+            android:paddingVertical="@dimen/spacing_32"
+            android:paddingStart="@dimen/spacing_32"
+            android:paddingEnd="@dimen/spacing"
+            android:text="@string/enable_biometrics"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:isVisible="@{viewModel.uiState.showBiometrics}" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/spacing"
+            android:paddingTop="@dimen/spacing_32"
+            android:paddingBottom="@dimen/spacing_half"
+            android:text="@string/other_features"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="@dimen/headline_7" />
+
+        <TextView
+            android:id="@+id/bt_load_json"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:paddingVertical="@dimen/spacing_32"
+            android:paddingStart="@dimen/spacing_32"
+            android:paddingEnd="@dimen/spacing"
+            android:text="@string/load_from_json_file"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:drawableEndCompat="@drawable/ic_chevron_right" />
+
+    </LinearLayout>
+</layout>
