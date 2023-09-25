@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.notes.list
+package com.asct94.securenote.presentation.notes.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.asct94.securenote.databinding.FragmentNoteListBinding
-import com.asct94.securenote.features.base.BaseFragment
+import com.asct94.securenote.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

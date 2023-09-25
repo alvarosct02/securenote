@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.notes.add_edit
+package com.asct94.securenote.presentation.notes.add_edit
 
 sealed interface NoteAddEditEvent {
     data object OnSaveSuccess : NoteAddEditEvent

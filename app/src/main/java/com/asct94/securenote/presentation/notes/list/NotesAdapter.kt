@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.notes.list
+package com.asct94.securenote.presentation.notes.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,10 +1,10 @@
-package com.asct94.securenote.features.login
+package com.asct94.securenote.presentation.login
 
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.repositories.AuthRepository
 import com.asct94.securenote.domain.repositories.BiometricsRepository
 import com.asct94.securenote.domain.repositories.SettingsRepository
-import com.asct94.securenote.features.base.BaseViewModel2
+import com.asct94.securenote.presentation.base.BaseViewModel2
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.delay

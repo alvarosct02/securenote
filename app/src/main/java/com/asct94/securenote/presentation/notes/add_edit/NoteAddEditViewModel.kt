@@ -1,10 +1,10 @@
-package com.asct94.securenote.features.notes.add_edit
+package com.asct94.securenote.presentation.notes.add_edit
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.models.Note
 import com.asct94.securenote.domain.repositories.NotesRepository
-import com.asct94.securenote.features.base.BaseViewModel2
+import com.asct94.securenote.presentation.base.BaseViewModel2
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,9 @@ class NoteAddEditViewModel @Inject constructor(
 
     val title = MutableStateFlow("")
     val message = MutableStateFlow("")
-    val color = MutableStateFlow(0)
+    val color = MutableStateFlow(Note.selectableColors.random())
+
+    val colorList = Note.selectableColors
 
     private var currentNoteId: Int? = null
 

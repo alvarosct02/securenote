@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.base
+package com.asct94.securenote.presentation.base
 
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat

@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.base
+package com.asct94.securenote.presentation.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

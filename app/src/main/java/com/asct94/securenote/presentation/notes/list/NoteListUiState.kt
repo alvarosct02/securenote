@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.notes.list
+package com.asct94.securenote.presentation.notes.list
 
 import com.asct94.securenote.domain.models.Note
 

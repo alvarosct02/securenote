@@ -1,4 +1,4 @@
-package com.asct94.securenote.features.base
+package com.asct94.securenote.presentation.base
 
 import android.os.Bundle
 import android.util.Log

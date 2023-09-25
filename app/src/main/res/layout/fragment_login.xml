@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.asct94.securenote.features.login.LoginViewModel" />
+            type="com.asct94.securenote.presentation.login.LoginViewModel" />
     </data>
 
 

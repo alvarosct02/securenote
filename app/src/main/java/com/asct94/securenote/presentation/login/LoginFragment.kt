@@ -1,14 +1,15 @@
-package com.asct94.securenote.features.login
+package com.asct94.securenote.presentation.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import com.asct94.securenote.MainActivity
 import com.asct94.securenote.databinding.FragmentLoginBinding
-import com.asct94.securenote.features.base.BiometricFragment
+import com.asct94.securenote.presentation.base.BiometricFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,8 +52,10 @@ class LoginFragment : BiometricFragment() {
     }
 
     private fun navigateToApp() {
-        val action = LoginFragmentDirections.actionLoginFragmentToNoteListFragment()
-        findNavController().navigate(action)
+        activity?.finish()
+        startActivity(Intent(context, MainActivity::class.java))
+//        val action = LoginFragmentDirections.actionLoginFragmentToMainActivity()
+//        findNavController().navigate(action)
     }
 
     private fun showError(message: String) {

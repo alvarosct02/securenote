@@ -1,8 +1,8 @@
-package com.asct94.securenote.features.notes.list
+package com.asct94.securenote.presentation.notes.list
 
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.repositories.NotesRepository
-import com.asct94.securenote.features.base.BaseViewModel2
+import com.asct94.securenote.presentation.base.BaseViewModel2
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job

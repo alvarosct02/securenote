@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.asct94.securenote.features.notes.add_edit.NoteAddEditViewModel" />
+            type="com.asct94.securenote.presentation.notes.add_edit.NoteAddEditViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:backgroundColor="@{viewModel.color}"
+            android:fillViewport="true">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Title"
-                app:counterEnabled="true"
-                app:counterMaxLength="100"
-                app:expandedHintEnabled="false">
+                android:orientation="vertical"
+                android:padding="@dimen/spacing">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.asct94.securenote.presentation.utils.ColorSelector
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:colors="@{viewModel.colorList}"
+                    app:selectedColor="@={viewModel.color}"
+                    tools:background="#ff00000"
+                    tools:minHeight="50dp" />
+
+                <EditText
                     android:id="@+id/et_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:hint="Add title"
-                    android:maxLength="100"
-                    android:text="@={viewModel.title}" />
+                    android:layout_marginTop="@dimen/spacing"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/title_placeholder"
+                    android:text="@={viewModel.title}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Note"
-                app:counterEnabled="true"
-                app:counterMaxLength="2000"
-                app:expandedHintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/et_message"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing"
+                    android:background="@android:color/transparent"
                     android:gravity="top"
-                    android:hint="Write your note here..."
-                    android:label="Title"
-                    android:maxLength="2000"
-                    android:minLines="5"
-                    android:text="@={viewModel.message}" />
+                    android:hint="@string/message_placeholder"
+                    android:text="@={viewModel.message}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </ScrollView>
 
-            <Button
-                android:id="@+id/bt_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="16dp"
-                android:text="Save" />
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/bt_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing"
+            android:text="@string/save"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        </LinearLayout>
-    </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

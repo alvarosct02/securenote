@@ -3,19 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/noteListFragment">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.asct94.securenote.features.login.LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_noteListFragment"
-            app:destination="@id/noteListFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/noteListFragment"
-        android:name="com.asct94.securenote.features.notes.list.NoteListFragment"
+        android:name="com.asct94.securenote.presentation.notes.list.NoteListFragment"
         tools:layout="@layout/fragment_note_list">
         <action
             android:id="@+id/action_noteListFragment_to_noteAddFragment"
@@ -30,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/noteAddEditFragment"
-        android:name="com.asct94.securenote.features.notes.add_edit.NoteAddEditFragment"
+        android:name="com.asct94.securenote.presentation.notes.add_edit.NoteAddEditFragment"
         tools:layout="@layout/fragment_note_add_edit">
 
         <argument
