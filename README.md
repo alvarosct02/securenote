@@ -8,6 +8,38 @@ Clone this repository and import into **Android Studio**
 git clone https://github.com/alvarosct02/securenote.git
 ```
 
+## How to use the app
+
+### Note Management
+1. Open the app & enter **any longer than 4 characters password**
+2. Add new notes
+3. Edit or Delete them
+
+### Enabling Biometrics
+1. Go to settings (top bar icon)
+2. Tap on Enable biometrics
+3. From now on each time you open the app a biometrics modal will pop up
+   
+Note: This option will only appear if you have biometrics setup on your device.
+
+### Load Notes with a Json  file
+1. Go to settings (top bar icon)
+2. Tap on 'Load from Json file'
+3. Select a **valid** json file (like this one: <a target="_blank" href="assets/notesSample.json" download="notesSample.json">notesSample.json</a>)
+
+Note: The json file must follow this format:
+```Json
+[
+	{
+		"title": "Some title", 
+		"messsage": "Some note" 
+	}
+]
+```
+   
+Note: This option will only appear if you have biometrics setup on your device.
+
+
 ## Tech Stack:
 
 - Kotlin
