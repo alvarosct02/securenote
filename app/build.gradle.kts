@@ -1,6 +1,11 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.plugin.serialization")
+
 }
 
 android {
@@ -9,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.asct94.securenote"
-        minSdk = 24
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -26,6 +31,10 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -37,6 +46,35 @@ android {
 
 dependencies {
 
+
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+//    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+
+//    Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
+
+//    Room
+    implementation("androidx.room:room-runtime:2.6.0-rc01")
+    implementation("androidx.room:room-ktx:2.6.0-rc01")
+    kapt("androidx.room:room-compiler:2.6.0-rc01")
+
+//    Biometric
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
+    // security
+    implementation("androidx.security:security-crypto:1.0.0")
+
+    // sqlcipher
+    implementation("net.zetetic:android-database-sqlcipher:4.5.0")
+
+//    Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -44,4 +82,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+kapt {
+    correctErrorTypes = true
 }

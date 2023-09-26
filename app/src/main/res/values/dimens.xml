@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="divider_size">4dp</dimen>
+    <dimen name="spacing_half">8dp</dimen>
+    <dimen name="spacing">16dp</dimen>
+    <dimen name="spacing_32">32dp</dimen>
+    <dimen name="spacing_64">64dp</dimen>
+    <dimen name="size_color_selector">48dp</dimen>
+    <dimen name="size_color_selector_stroke">2dp</dimen>
+    <dimen name="size_color_selector_elevation">2dp</dimen>
+    <dimen name="headline_7">18sp</dimen>
+</resources>

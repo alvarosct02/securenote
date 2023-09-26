@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/noteListFragment">
+
+    <fragment
+        android:id="@+id/noteListFragment"
+        android:name="com.asct94.securenote.presentation.notes.list.NoteListFragment"
+        tools:layout="@layout/fragment_note_list">
+        <action
+            android:id="@+id/action_noteListFragment_to_noteAddFragment"
+            app:destination="@id/noteAddEditFragment">
+            <argument
+                android:name="noteId"
+                android:defaultValue="-1" />
+        </action>
+        <action
+            android:id="@+id/action_noteListFragment_to_noteEditFragment"
+            app:destination="@id/noteAddEditFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteAddEditFragment"
+        android:name="com.asct94.securenote.presentation.notes.add_edit.NoteAddEditFragment"
+        tools:layout="@layout/fragment_note_add_edit">
+
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.asct94.securenote.presentation.settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>
