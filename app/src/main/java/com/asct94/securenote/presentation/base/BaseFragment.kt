@@ -30,7 +30,6 @@ abstract class BaseFragment : Fragment() {
         val flow = this
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(state) {
-                Log.e("ASCT", "flow.collect")
                 flow.collect(collector)
             }
         }

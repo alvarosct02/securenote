@@ -2,7 +2,7 @@ package com.asct94.securenote.presentation.notes.list
 
 import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.repositories.NotesRepository
-import com.asct94.securenote.presentation.base.BaseViewModel2
+import com.asct94.securenote.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Job
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.update
 @HiltViewModel
 class NoteListViewModel @Inject constructor(
     private val notesRepository: NotesRepository
-) : BaseViewModel2<Unit>() {
+) : BaseViewModel<Unit>() {
 
     private val _uiState = MutableStateFlow(NoteListUiState())
     val uiState: StateFlow<NoteListUiState> = _uiState

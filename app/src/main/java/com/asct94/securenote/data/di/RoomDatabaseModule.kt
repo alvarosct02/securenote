@@ -10,6 +10,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 
 @InstallIn(SingletonComponent::class)
@@ -24,10 +26,17 @@ object RoomDatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase {
-        return Room.databaseBuilder(
+        val builder = Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
             "secureNote.db"
-        ).build()
+        )
+        val factory = SupportFactory(
+            SQLiteDatabase.getBytes(
+                AppDatabase::class.qualifiedName.orEmpty().toCharArray()
+            )
+        )
+        builder.openHelperFactory(factory)
+        return builder.build()
     }
 }

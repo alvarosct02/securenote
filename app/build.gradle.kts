@@ -4,6 +4,8 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.plugin.serialization")
+
 }
 
 android {
@@ -59,6 +61,16 @@ dependencies {
 
 //    Biometric
     implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
+    // security
+    implementation("androidx.security:security-crypto:1.0.0")
+
+    // sqlcipher
+    implementation("net.zetetic:android-database-sqlcipher:4.5.0")
+
+//    Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.3")

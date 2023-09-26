@@ -13,7 +13,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C7BBDC"
+        android:background="?attr/colorPrimaryContainer"
         android:clipToPadding="false"
         android:fillViewport="true">
 
@@ -25,6 +25,9 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
+                app:strokeWidth="0dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_32">
 

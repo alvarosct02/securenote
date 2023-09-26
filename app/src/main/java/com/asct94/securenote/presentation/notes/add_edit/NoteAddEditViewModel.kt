@@ -6,7 +6,7 @@ import com.asct94.securenote.R
 import com.asct94.securenote.domain.models.Note
 import com.asct94.securenote.domain.models.Note.Companion.NOTE_ID_NULL
 import com.asct94.securenote.domain.repositories.NotesRepository
-import com.asct94.securenote.presentation.base.BaseViewModel2
+import com.asct94.securenote.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class NoteAddEditViewModel @Inject constructor(
     private val notesRepository: NotesRepository,
     savedStateHandle: SavedStateHandle,
-) : BaseViewModel2<NoteAddEditEvent>() {
+) : BaseViewModel<NoteAddEditEvent>() {
 
     val title = MutableStateFlow("")
     val message = MutableStateFlow("")

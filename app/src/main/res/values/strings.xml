@@ -17,8 +17,15 @@
     <string name="yes">Are you sure?</string>
     <string name="note_save_error">Can\'t save an empty note</string>
 
+    <string name="loading">Loading Json…</string>
+    <string name="notes_imported_correctly">Notes were imported correctly</string>
+    <string name="view_all">View All</string>
+    <string name="notes_imported_error">Notes couldn\'t be imported</string>
+    <string name="retry">Retry</string>
 
-<!--    Note Delete Confirmation-->
+
+
+    <!--    Note Delete Confirmation-->
     <string name="note_delete_dialog_title">Delete Note</string>
     <string name="note_delete_dialog_message">Do you really want to delete this note?</string>
     <string name="confirm">Confirm</string>
@@ -33,5 +40,7 @@
     <string name="other_features">Other Features</string>
     <string name="account">Account</string>
     <string name="load_from_json_file">Load from JSON file</string>
+    <string name="please_install_a_file_manager">Please install a File Manager.</string>
+    <string name="select_a_file_to_upload">Select a File to Upload</string>
 
 </resources>

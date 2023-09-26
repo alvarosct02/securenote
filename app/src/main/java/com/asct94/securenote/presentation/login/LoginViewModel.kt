@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.asct94.securenote.domain.repositories.AuthRepository
 import com.asct94.securenote.domain.repositories.BiometricsRepository
 import com.asct94.securenote.domain.repositories.SettingsRepository
-import com.asct94.securenote.presentation.base.BaseViewModel2
+import com.asct94.securenote.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.delay
@@ -16,7 +16,7 @@ class LoginViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository,
     private val biometricsRepository: BiometricsRepository,
     private val authRepository: AuthRepository,
-) : BaseViewModel2<LoginEvent>() {
+) : BaseViewModel<LoginEvent>() {
 
     val password = MutableStateFlow("")
 

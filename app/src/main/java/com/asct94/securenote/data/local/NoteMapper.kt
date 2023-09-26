@@ -12,7 +12,8 @@ class NoteEntityMapper @Inject constructor() {
             id = it.id.takeUnless { id -> id == NOTE_ID_NULL },
             title = it.title,
             message = it.message,
-            color = it.color,
+            color = it.color.takeIf { color -> color in Note.selectableColors }
+                ?: Note.selectableColors.random(),
             updatedAt = it.updateAt,
         )
     }

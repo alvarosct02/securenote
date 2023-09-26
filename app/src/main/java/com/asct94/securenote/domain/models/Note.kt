@@ -6,8 +6,9 @@ import com.asct94.securenote.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlinx.serialization.Serializable
 
-
+@Serializable
 data class Note(
     val id: Int = NOTE_ID_NULL,
     val title: String,
