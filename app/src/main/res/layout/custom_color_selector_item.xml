@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/size_color_selector"
     android:layout_height="@dimen/size_color_selector"
+    android:layout_marginEnd="@dimen/spacing"
     android:background="@drawable/bg_color_item_unselected"
     android:foreground="@drawable/bg_color_item_selector"
     tools:backgroundTint="?attr/colorPrimary" />

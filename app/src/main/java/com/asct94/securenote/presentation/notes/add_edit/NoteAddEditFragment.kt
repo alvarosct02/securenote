@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -32,11 +32,12 @@ class NoteAddEditFragment : BaseFragment() {
     }
 
     override fun setupViews() {
+        val isEditing = args.noteId != NOTE_ID_NULL
+        val titleRes = if (isEditing) R.string.title_edit_note else R.string.title_add_note
+        binding.btDelete.isVisible = isEditing
+
         binding.btSave.setOnClickListener { viewModel.saveNote() }
         binding.btDelete.setOnClickListener { viewModel.deleteNote() }
-        val titleRes =
-            R.string.title_edit_note.takeIf { args.noteId != NOTE_ID_NULL }
-                ?: R.string.title_add_note
         binding.tvToolbarTitle.setText(titleRes)
     }
 

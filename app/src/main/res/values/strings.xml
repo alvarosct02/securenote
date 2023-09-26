@@ -6,13 +6,13 @@
 
     <string name="date_format">MM/dd/yyyy HH:mm:ss</string>
 
-<!--    General-->
+    <!-- General -->
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
 
-<!--    Login-->
+    <!-- Login -->
     <string name="password">Password</string>
     <string name="yes">Are you sure?</string>
     <string name="note_save_error">Can\'t save an empty note</string>
@@ -23,14 +23,12 @@
     <string name="notes_imported_error">Notes couldn\'t be imported</string>
     <string name="retry">Retry</string>
 
-
-
-    <!--    Note Delete Confirmation-->
+    <!-- Note Delete Confirmation -->
     <string name="note_delete_dialog_title">Delete Note</string>
     <string name="note_delete_dialog_message">Do you really want to delete this note?</string>
     <string name="confirm">Confirm</string>
     <string name="login_info">To safeguard your privacy and access your confidential notes, please enter your password.\n\nThis ensures only you have access, providing peace of mind and a secure digital space for your notes.</string>
-    <string name="message_placeholder">Write your note here...</string>
+    <string name="message_placeholder">Write your note here…</string>
     <string name="title_placeholder">Add title</string>
     <string name="message_label">Note</string>
     <string name="title_label">Title</string>
@@ -42,5 +40,6 @@
     <string name="load_from_json_file">Load from JSON file</string>
     <string name="please_install_a_file_manager">Please install a File Manager.</string>
     <string name="select_a_file_to_upload">Select a File to Upload</string>
+    <string name="notes_empty_message">Looks like you do not have notes yet. Don\'t worry it\'s never too late</string>
 
 </resources>

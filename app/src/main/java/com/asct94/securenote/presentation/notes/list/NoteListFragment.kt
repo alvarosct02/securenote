@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.asct94.securenote.databinding.FragmentNoteListBinding
@@ -46,6 +47,7 @@ class NoteListFragment : BaseFragment() {
 
     override fun setupObservers() {
         viewModel.uiState.collectWhenStarted {
+            binding.emptyListMessage.isVisible = it.notes.isEmpty()
             adapter.submitList(it.notes)
         }
     }
